@@ -12,9 +12,7 @@ A multi-application **Java console productivity suite** built around the Java **
 |-----|--------|--------------|
 | **MileStone Tracker** | ✅ Working | Tracks **age-based** milestones (e.g., "Age 21: graduate college") and **day-based** milestones (e.g., "Day 10,000 alive"), calculated from your birthday |
 | **Subscription Tracker** | ✅ Working | Stores subscriptions with name, price, billing cycle and start date (today or an earlier date) |
-| **Day Planner** | 🚧 Planned | Lists events sorted by date/time, flags overlapping events and shows free time between them |
 | **Work Hours Tracker** | 🚧 Planned | Clock-in/clock-out logger with daily totals, overtime flags and weekly summaries |
-| **Multi-TimeZone Meeting Planner** | 🚧 Planned | Helps schedule meetings across time zones |
 
 ---
 
@@ -49,9 +47,7 @@ ChronoSuite/
 │   ├── Application.java
 │   ├── MileStoneTracker/          # Milestone logic + data class
 │   ├── SubscriptionTracker/       # Subscription logic + data classes
-│   ├── DayPlanner/                # Planned
-│   ├── WorkHoursTracker/          # Planned
-│   └── MultiTimeZoneMeetingPlanner/  # Planned
+│   └── WorkHoursTracker/          # Planned
 └── Misc/
     ├── DataManager.java           # Age calculation and password hashing
     ├── FileManager.java           # Creating, loading and saving JSON files
@@ -112,7 +108,7 @@ java -cp "out:lib/*" Launcher
 - [ ] Separate the app logic from console input/output
 - [ ] JavaFX desktop interface (choose CLI or JavaFX at launch)
 - [ ] Package as a standalone `.exe`
-- [ ] Finish Day Planner, Work Hours Tracker and Multi-TimeZone Meeting Planner
+- [ ] Work Hours Tracker
 
 ---
 
