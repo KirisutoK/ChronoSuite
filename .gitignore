@@ -1,0 +1,8 @@
+Saves/
+*.zip
+*.class
+out/
+target/
+lib/
+.idea/
+*.iml
