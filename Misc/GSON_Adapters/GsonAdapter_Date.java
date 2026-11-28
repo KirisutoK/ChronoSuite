@@ -1,7 +1,7 @@
 package Misc.GSON_Adapters;
 
 // Creation Date: September 18, 2026. at 9:19 PM
-// Last Modified: September 18, 2026. at  9:37 PM
+// Last Modified: November 27, 2026. at  9:03 PM
 
 import com.google.gson.*;
 

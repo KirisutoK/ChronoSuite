@@ -1,7 +1,7 @@
 package Applications.SubscriptionTracker;
 
 // Creation Date: August 21, 2026. at 12:03 AM
-// Last Modified: October 21, 2026. at  4:41 PM
+// Last Modified: November 27, 2026. at 11:21 PM
 
 import Applications.Application;
 import Misc.DataManager;
@@ -91,18 +91,18 @@ public class SubscriptionTracker implements Application {
     }
     public boolean loadFile(String Filename) throws IOException {
         // [SECURITY CHECK]
-        CurrentFile = FileManager.getFile("SubscriptionTracker", Filename);
+        File TempFile = FileManager.getFile("SubscriptionTracker", Filename);
+        if (TempFile == null) { // If the filename that was given from the user is null or does not match with out existing saves
+            return false; // False means that it did not load successfully
+        }
 
         if (CurrentST_Data != null) {
             CurrentST_Data.logOut(); // Logs out so that if the CurrentST_Data was not selected to the ST Object, it will show logged out for its JSON data. // CLAUDE: uncommented this — it was disabled while the log line below still claimed a logout happened
             Logger.log("SubscriptionTracker", FileManager.fileNameOnly(CurrentFile, 5), "{User: "+Username+"} has logged out.");
         }
-        if (CurrentFile == null) {
-            resetCurrentFileData();
-            return false; // False means that it did not load successfully
-        }
 
         // [DESERIALIZATION]
+        CurrentFile = TempFile;
         CurrentST_Data = FileManager.getObject(CurrentFile , SubscriptionTrackerData.class);
 
         // NOTE: Dont forget to log in when loading the file in

@@ -2,7 +2,7 @@ package Applications.SubscriptionTracker;
 
 
 // Creation Date: September 30, 2026. at 6:18 PM
-// Last Modified: October 21, 2026. at  4:41 PM
+// Last Modified: November 27, 2026. at 11:46 PM
 
 import java.util.HashSet;
 
@@ -14,11 +14,12 @@ public class SubscriptionTrackerData { // implements Application
     // [SECURITY]
     private String Password; // TODO: WE NEED TO ENCRYPT THIS! in the object file, it shows the password. (DO THIS AFTER LEARNING HOW TO ENCRYPT AND HASHING [Cryptography Lessons: Not OOP])
     private boolean EmptyPassword;
-    private boolean LoggedIn = false;
+    private transient boolean LoggedIn = false;
+    private String LoggedUser; // the last user who logged into this file
 
     // [CALCULATIONS]
-    private double TotalMonthlyCost;
-    private double TotalYearlyCost;
+    private double TotalMonthlyCost = 0;
+    private double TotalYearlyCost = 0;
     private HashSet<SubscriptionData> Subscriptions;
 
     //=======CONSTRUCTOR=======// NOTE: IN ORDER TO USE THIS FILES WE NEED A CONSTRUCTOR TO CREATE INSTANCES FROM OTHER FILES
@@ -34,6 +35,9 @@ public class SubscriptionTrackerData { // implements Application
     public String getAuthor() {
         return (LoggedIn) ? Author : null;
     }
+    public String getLoggedUser() {
+        return LoggedUser;
+    }
     public boolean isEmpty() {
         return Subscriptions == null || Subscriptions.isEmpty();
     }
@@ -48,6 +52,26 @@ public class SubscriptionTrackerData { // implements Application
         }
 
         return null; // It's null if nothing matches in the HashSet<SubscriptionData>
+    }
+    public double getTotalMonthlyCost() {
+        TotalMonthlyCost = 0;
+
+        // CALCULATE EVERY SUBS IN MONTHLY: Price * (30.44/BillingCycle)
+        for (SubscriptionData SD: Subscriptions) {
+            TotalMonthlyCost += SD.getPrice()*(30.44/SD.getBillingCycle());
+        }
+        
+        return TotalMonthlyCost;
+    }
+    public double getTotalYearlyCost() {
+        TotalYearlyCost = 0;
+
+        // CALCULATE EVERY SUBS IN MONTHLY: Price * (365.25/BillingCycle)
+        for (SubscriptionData SD: Subscriptions) {
+            TotalYearlyCost += SD.getPrice()*(365.25/SD.getBillingCycle());
+        }
+
+        return TotalYearlyCost;
     }
 
     // [SECURITY]
@@ -65,8 +89,8 @@ public class SubscriptionTrackerData { // implements Application
     //==========SETTERS==========\\ NOTE: CHANGES THE VARIABLES ON THIS FILE
     // [SECURITY]
     public boolean logIn(String input, String currentUser) {
-        //// LoggedUser = currentUser;
         if (Password.equals(input)) {
+            LoggedUser = currentUser;
             LoggedIn = true;
             return true; // true means that it has succefully logged in
         }

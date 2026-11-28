@@ -2,7 +2,7 @@
 
 A multi-application **Java console productivity suite** built around the Java **Date and Time API**. Track life milestones and subscriptions, with password-protected **JSON save files** and per-file activity logs.
 
-> **Status:** Work in progress. The CLI version is in active development, and a **JavaFX** desktop version is planned.
+> **Status:** Work in progress. This is the CLI (console) version of ChronoSuite.
 
 ---
 
@@ -39,14 +39,11 @@ A multi-application **Java console productivity suite** built around the Java **
 
 ```
 ChronoSuite/
-├── Launcher.java                  # Entry point
-├── Controller/
-│   └── CLI/
-│       └── Menu.java              # Console menus and user input
+├── Menu.java                      # Entry point (main) + Main Menu
 ├── Applications/
 │   ├── Application.java
-│   ├── MileStoneTracker/          # Milestone logic + data class
-│   ├── SubscriptionTracker/       # Subscription logic + data classes
+│   ├── MileStoneTracker/          # Milestone logic, data class + menu
+│   ├── SubscriptionTracker/       # Subscription logic, data classes + menu
 │   └── WorkHoursTracker/          # Planned
 └── Misc/
     ├── DataManager.java           # Age calculation and password hashing
@@ -77,8 +74,7 @@ Saves/
 ### Option 1: IDE (IntelliJ IDEA / VS Code)
 1. Clone the repository and open the folder in your IDE.
 2. Add the Gson `.jar` as a library (IntelliJ: **File → Project Structure → Libraries → + → Java**, then select the `.jar`).
-3. Run `Launcher.java`.
-4. Choose **1. CLI** when asked.
+3. Run `Menu.java`.
 
 ### Option 2: Command Line
 
@@ -87,13 +83,13 @@ Run these from the project root so the `Saves/` folder is created in the right p
 **Windows (PowerShell):**
 ```powershell
 javac -encoding UTF-8 -cp "lib/*" -d out (Get-ChildItem -Recurse -Filter *.java).FullName
-java -cp "out;lib/*" Launcher
+java -cp "out;lib/*" Menu
 ```
 
 **macOS / Linux:**
 ```bash
 javac -encoding UTF-8 -cp "lib/*" -d out $(find . -name "*.java")
-java -cp "out:lib/*" Launcher
+java -cp "out:lib/*" Menu
 ```
 
 **Windows tip:** if the menu borders show up as `?` or strange symbols, run `chcp 65001` first to switch the terminal to UTF-8.
@@ -106,7 +102,6 @@ java -cp "out:lib/*" Launcher
 - [x] Hash passwords with SHA-256
 - [x] Subscription Tracker (console + JSON)
 - [ ] Separate the app logic from console input/output
-- [ ] JavaFX desktop interface (choose CLI or JavaFX at launch)
 - [ ] Package as a standalone `.exe`
 - [ ] Work Hours Tracker
 

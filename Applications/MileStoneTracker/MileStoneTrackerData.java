@@ -1,7 +1,7 @@
 package Applications.MileStoneTracker;
 
 // Creation Date: August 26, 2026. at 11:59 PM
-// Last Modified: October 06, 2026. at  3:20 PM
+// Last Modified: November 27, 2026. at 11:44 PM
 
 import Misc.DataManager;
 
@@ -19,7 +19,7 @@ public class MileStoneTrackerData {
     // [Security]
     private String Password; // TODO: WE NEED TO ENCRYPT THIS! in the object file, it shows the password. (DO THIS AFTER LEARNING HOW TO ENCRYPT AND HASHING [Cryptography Lessons: Not OOP])
     private boolean EmptyPassword; // this is to make sure that the actual file is actually has no password (It can be like a getter for password if return null).
-    private boolean LoggedIn = false;
+    private transient boolean LoggedIn = false;
 
     // [Basic Data]
     private String Author;
@@ -113,8 +113,8 @@ public class MileStoneTrackerData {
 
     // [SECURITY]
     public boolean logIn(String input, String currentUser) {
-        LoggedUser = currentUser;
         if (Password.equals(input)) {
+            LoggedUser = currentUser;
             LoggedIn = true;
             return true; // true means that it has succefully logged in
         }

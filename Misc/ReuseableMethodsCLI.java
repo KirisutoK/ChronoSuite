@@ -1,5 +1,5 @@
 package Misc;// Creation Date: August 21, 2026. at 10:50 PM
-// Last Modified: October 05, 2026. at  5:11 PM
+// Last Modified: November 27, 2026. at 10:57 PM
 
 import com.google.gson.*;
 
@@ -22,10 +22,10 @@ public class ReuseableMethodsCLI {
                 Answer = input.nextInt();
                 input.nextLine(); // Refreshes buffer
                 if (Answer < start || Answer > end) {
-                    throw new InputMismatchException();
+                    System.out.println("Please choose between "+start+" through "+end);
+                } else {
+                    ValidAnswer = true;
                 }
-
-                ValidAnswer = true;
             } catch (InputMismatchException e) {
                 System.out.println("Please choose between "+start+" through "+end);
                 input.nextLine(); // Refreshes buffer
